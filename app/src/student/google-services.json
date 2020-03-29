@@ -1,0 +1,85 @@
+{
+  "project_info": {
+    "project_number": "836933472989",
+    "firebase_url": "https://memorizemusicapp.firebaseio.com",
+    "project_id": "memorizemusicapp",
+    "storage_bucket": "memorizemusicapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:836933472989:android:1677363d063fb2936b4134",
+        "android_client_info": {
+          "package_name": "com.johngoodstadt.memorize"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "836933472989-11otl4jmfbogcp64t9u19o5tmeipvsgr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0ZuOX4CEnFH7ijHOJEGLW7jr_eHI2ubI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "836933472989-11otl4jmfbogcp64t9u19o5tmeipvsgr.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "836933472989-ml6l6vj027bmqumj5milb79t6tack56u.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.johngoodstadt.memorize",
+                "app_store_id": "1378862411"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:836933472989:android:d7ed1955c2f738a26b4134",
+        "android_client_info": {
+          "package_name": "com.johngoodstadt.memorize.free"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "836933472989-11otl4jmfbogcp64t9u19o5tmeipvsgr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0ZuOX4CEnFH7ijHOJEGLW7jr_eHI2ubI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "836933472989-11otl4jmfbogcp64t9u19o5tmeipvsgr.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "836933472989-ml6l6vj027bmqumj5milb79t6tack56u.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.johngoodstadt.memorize",
+                "app_store_id": "1378862411"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

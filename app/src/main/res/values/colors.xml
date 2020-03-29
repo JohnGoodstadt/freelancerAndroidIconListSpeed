@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#F9F9F9</color>
+    <color name="colorPrimaryDark">#CAC8C8</color>
+    <color name="colorDisabled">#B8B4B4</color>
+    <color name="colorAccent">#007AFF</color>
+    <color name="colorBackGround">#EFEFF4</color>
+    <color name="btnSelected">#3BAD50</color>
+    <color name="ripple_color">#FFA9CBF0</color>
+    <color name="edit_text_background">#DDDDDD</color>
+
+    <color name="green_icon_background">#3AAD50</color>
+    <color name="black">#000</color>
+    <color name="orange">#000</color>
+       <!--Dots-->
+
+
+
+    -<array name="array_dot_active">
+
+    <item>@color/btnSelected</item>
+
+    <item>@color/btnSelected</item>
+
+    <item>@color/btnSelected</item>
+
+
+</array>
+
+
+    -<array name="array_dot_inactive">
+
+    <item>@color/colorPrimaryDark</item>
+
+    <item>@color/colorPrimaryDark</item>
+
+    <item>@color/colorPrimaryDark</item>
+
+</array>
+</resources>

@@ -1,0 +1,118 @@
+<resources>
+<!--    <string name="app_name">Memorize</string>-->
+    <string name="tab_text_1">Groups</string>
+    <string name="tab_text_2">Today</string>
+    <string name="title_settings">settings</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- settings arrays -->
+    <string-array name="settings_sections">
+        <item>User Settings</item>
+        <item>Developer Settings</item>
+    </string-array>
+    <string-array name="settings_header">
+        <item>Logged Out</item>
+        <item>Timings</item>
+        <item>Support</item>
+        <item>You Tube - Instructions</item>
+        <item>7 Day Activity</item>
+        <item>1 Piece 7 Phrase</item>
+        <item>View Help Pages</item>
+        <item>Unhide Pieces</item>
+        <item>Upload to other devices</item>
+        <item>Instruments</item>
+        <item>Cloud Debug</item>
+        <item>Private Database</item>
+    </string-array>
+    <string-array name="settings_sub_header">
+        <item>You are not logged in</item>
+        <item>Manage timings - (20 minutes,1 hour, 1 day etc)</item>
+        <item>Go to Facebook Messenger to ask any question. Are you stuck? Don\'t know what to do next? Chat to me.</item>
+        <item>Full Usage explained by Alexa and Brian</item>
+        <item>Displays what you have done in last 7 days</item>
+        <item>2 in setup 3 learning 2 active </item>
+        <item>View all help pages from here</item>
+        <item>Unhide all hidden pieces. No pieces hidden</item>
+        <item>Upload all data for download on your other devices</item>
+        <item>We can suggest appropriate settings if we know that you are a Voice or Keyboard or Strings etc. Tap to set</item>
+        <item>Various tools for cloud processing</item>
+        <item>View all rows in your private cloud database</item>
+    </string-array>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- add piece -->
+    <string name="to_make_up">To make up the title \'-\' will be used as a seperator</string>
+    <string name="create">Create</string>
+    <string name="movement_hint">Prelude</string>
+    <string name="piece_hint">Cello Suite No 1 or Blackbird</string>
+    <string name="composer_hint">Bach or Beatles</string>
+    <string name="give_a_name">Give a name to this piece</string>
+
+    <!-- piece detail-->
+    <string name="configure">Configure</string>
+    <string name="_1_phrases">1. Phrases</string>
+    <string name="_3_polish">3. Polish</string>
+    <string name="_2_piece">2. Piece</string>
+    <string name="settings_dev_1">Settings Dev 1</string>
+    <string name="cancel">@android:string/cancel</string>
+    <string name="continue_btn">Continue</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="move_on_to_next_memory">Move on to next memory</string>
+    <string name="learn_now">Learn Now</string>
+    <string name="later">Later</string>
+    <string name="learnt">Learnt</string>
+    <string name="try_it_now">Try it now</string>
+
+    <!--detail bottom sheet-->
+    <string-array name="piece_detail_bottom_sheet">
+        <item>Change title</item>
+        <item>Add next phrase \'A\'</item>
+        <item>Manage photos of score</item>
+        <item>View help for \'Prepare score\'</item>
+        <item>View help for \'step 1\'</item>
+        <item>Learn all phrases</item>
+        <item>I have performed this piece</item>
+        <item>Hide piece</item>
+        <item>Delete piece</item>
+    </string-array>
+
+    <string-array name="learn_bottom_sheet">
+        <item>View in full screen</item>
+        <item>Replace from camera</item>
+        <item>Replace from library</item>
+        <item>Crop phrase</item>
+        <item>Setup again</item>
+    </string-array>
+
+    <string-array name="learn_bottom_sheet_keys">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+
+    <string-array name="wizard_bottom_sheet">
+        <item>Crop Photo</item>
+        <item>Take Photo</item>
+        <item>Photo Library</item>
+        <item>Select Score Page</item>
+        <item>Remove Selected Photo</item>
+    </string-array>
+
+    <string name="manage_images">Manage Images</string>
+    <string name="manage_phrases">Manage Phrases</string>
+    <string name="view">View</string>
+
+    <string name="wizard2_page_title">Add an image of the pose as a prompt</string>
+    <string name="wizard1_page_title">This is the pose</string>
+    <string name="add_case_title">Add the question to ask your self e.g. the pose name.</string>
+    <string name="add_photo">Add a <b>photo</b> of the pose as a <b>Prompt</b>.</string>
+    <string name="we_re_all_set">We\'re all set</string>
+    <string name="learn_now_or">Learn now or wait until you are ready</string>
+    <string name="timings">Timings</string>
+    <string name="do_you_remember">Tell me about this?</string>
+
+
+</resources>

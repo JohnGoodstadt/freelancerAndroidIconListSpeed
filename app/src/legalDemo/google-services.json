@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "177060738961",
+    "firebase_url": "https://memorize-yoga-app.firebaseio.com",
+    "project_id": "memorize-yoga-app",
+    "storage_bucket": "memorize-yoga-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:177060738961:android:e257f96be277fcb3978c30",
+        "android_client_info": {
+          "package_name": "com.johngoodstadt.memorize.yoga"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "177060738961-68rts62phl2fmke2c78uvdm7g4k9rbee.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8nQXxG_I5QUjU2VgIwcu-LmCOWB-RFlU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "177060738961-68rts62phl2fmke2c78uvdm7g4k9rbee.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

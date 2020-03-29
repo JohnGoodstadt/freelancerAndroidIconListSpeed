@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+    <variable
+        name="pieceDetailVM"
+        type="com.johngoodstadt.memorize.viewmodels.PieceDetailVM" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activities.MusicPieceActivity">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/nav_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:minHeight="?actionBarSize"
+                    android:padding="@dimen/appbar_padding"
+                    android:textSize="@dimen/title_size"
+                    android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title" />
+
+                <ImageView
+                    android:id="@+id/back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:contentDescription="@null"
+                    android:padding="@dimen/appbar_padding"
+                    android:src="@drawable/ic_action_back"
+
+                    />
+
+                <ImageView
+                    android:id="@+id/add"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:contentDescription="@null"
+                    android:padding="@dimen/appbar_padding"
+                    android:src="@drawable/ic_action_add"
+
+                    />
+            </RelativeLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <Button
+            android:id="@+id/buttonStep1"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/_1_phrases"
+            android:backgroundTint="@{pieceDetailVM.buttonSelected==0?@color/btnSelected:@android:color/white}"
+            android:textColor="@{pieceDetailVM.buttonSelected==0?@android:color/white:@color/colorAccent}"
+            android:background="@android:color/white"
+            android:onClick="@{()->pieceDetailVM.buttonClicked(0)}"
+
+            app:layout_constraintEnd_toStartOf="@+id/buttonStep3"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/app_bar" />
+
+        <Button
+            android:id="@+id/buttonStep3"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/_3_polish"
+            android:backgroundTint="@{pieceDetailVM.buttonSelected==1?@color/btnSelected:@android:color/white}"
+            android:textColor="@{pieceDetailVM.buttonSelected==1?@android:color/white:@color/colorAccent}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/buttonStep1"
+            android:onClick="@{()->pieceDetailVM.buttonClicked(1)}"
+            app:layout_constraintTop_toBottomOf="@+id/app_bar" />
+
+        <Button
+            android:id="@+id/buttonStep2"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:text="@string/_2_piece"
+            android:backgroundTint="@{pieceDetailVM.buttonSelected==2?@color/btnSelected:@android:color/white}"
+            android:textColor="@{pieceDetailVM.buttonSelected==2?@android:color/white:@color/colorAccent}"
+            app:layout_constraintEnd_toStartOf="@+id/ConfigureButton"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            android:onClick="@{()->pieceDetailVM.buttonClicked(2)}"
+            app:layout_constraintTop_toBottomOf="@+id/buttonStep1" />
+
+        <Button
+            android:id="@+id/ConfigureButton"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/configure"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/buttonStep2"
+            app:layout_constraintTop_toBottomOf="@+id/buttonStep3" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="8dp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintTop_toBottomOf="@+id/ConfigureButton" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/detail_list99"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

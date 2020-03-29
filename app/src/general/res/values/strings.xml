@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tab_text_1">Groups</string>
+    <string name="tab_text_2">Today</string>
+    <string name="add_photo">Add some words, as a <b>Prompt</b>.</string>
+    <string name="do_you_remember">Tell me about this?</string>
+    <string name="recall_now_phrase_page_title">Do you remember this?</string>
+</resources>
