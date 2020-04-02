@@ -85,6 +85,45 @@ class RecallGroupActivity : AppCompatActivity(), PhrasesFragment.OnListFragmentI
     override fun onListFragmentInteraction(item: OneLineTableViewCell) {
         println("onListFragmentInteraction CheckedTableViewCell")
         Toast.makeText(this, item.title, Toast.LENGTH_SHORT).show()
+        when (item.journeyState) {
+            RecallItem.ITEM_JOURNEY_STATE_ENUM.JourneyStateInDepotSetup -> {
+
+                if (Constants.whichApp.isRunning == Constants.whichApp.target.yoga) {
+                    val intent =
+                        Intent(this@RecallGroupActivity, PromptAsImageWizardActivity::class.java)
+                    intent.putExtra("UID", item.UID)
+                    intent.putExtra(ARG_PARAM_busDepotUID, item.busDepotUID)
+                    startActivityForResult(intent, Constants.RequestCodes.REQUEST_ITEM_SETUP)
+                } else {
+                    val intent =
+                        Intent(this@RecallGroupActivity, WordsOnlyWizardActivity::class.java)
+                    intent.putExtra("UID", item.UID)
+                    intent.putExtra(ARG_PARAM_busDepotUID, item.busDepotUID)
+                    startActivityForResult(intent, Constants.RequestCodes.REQUEST_ITEM_SETUP)
+                }
+
+
+            }
+            RecallItem.ITEM_JOURNEY_STATE_ENUM.JourneyStateInDepotLearning -> {
+
+                if ( Constants.whichApp.isRunning == Constants.whichApp.target.music ){
+                    val intent = Intent(this@RecallGroupActivity, LearnNowActivity::class.java)
+                    intent.putExtra(Constants.ARG_PARAM_UID, item.UID)
+                    intent.putExtra(Constants.ARG_PARAM_busDepotUID, item.busDepotUID)
+
+                    startActivityForResult(intent, Constants.RequestCodes.REQUEST_ITEM_LEARN)
+                }else{
+                    val intent = Intent(this@RecallGroupActivity, LearnNowWordsOnlyActivity::class.java)
+                    intent.putExtra(Constants.ARG_PARAM_UID, item.UID)
+                    intent.putExtra(Constants.ARG_PARAM_busDepotUID, item.busDepotUID)
+
+                    startActivityForResult(intent, Constants.RequestCodes.REQUEST_ITEM_LEARN)
+                }
+
+
+
+            }
+        }
     }
     override fun onListFragmentInteraction (ri: CheckedTableViewCell) {
 
@@ -105,19 +144,53 @@ class RecallGroupActivity : AppCompatActivity(), PhrasesFragment.OnListFragmentI
         when (item.journeyState) {
             RecallItem.ITEM_JOURNEY_STATE_ENUM.JourneyStateInDepotSetup -> {
 
-
+                if ( Constants.whichApp.isRunning == Constants.whichApp.target.yoga ){
+                    val intent = Intent(this@RecallGroupActivity, PromptAsImageWizardActivity::class.java)
+                    intent.putExtra("UID", item.UID)
+                    intent.putExtra(ARG_PARAM_busDepotUID, item.busDepotUID)
+                    startActivityForResult(intent, Constants.RequestCodes.REQUEST_ITEM_SETUP)
+                }else{
+                    val intent = Intent(this@RecallGroupActivity, WordsOnlyWizardActivity::class.java)
+                    intent.putExtra("UID", item.UID)
+                    intent.putExtra(ARG_PARAM_busDepotUID, item.busDepotUID)
+                    startActivityForResult(intent, Constants.RequestCodes.REQUEST_ITEM_SETUP)
+                }
 
 
 
             }
             RecallItem.ITEM_JOURNEY_STATE_ENUM.JourneyStateInDepotLearning -> {
 
-
+                if ( Constants.whichApp.isRunning == Constants.whichApp.target.legaldemo ){
+                    val intent = Intent(this@RecallGroupActivity, LearnNowWordsOnlyActivity::class.java)
+                    intent.putExtra(ARG_PARAM_UID, item.UID)
+                    intent.putExtra(ARG_PARAM_busDepotUID, item.busDepotUID)
+                    startActivityForResult(intent, Constants.RequestCodes.REQUEST_ITEM_LEARN)
+                }else{
+                    val intent = Intent(this@RecallGroupActivity, LearnNowActivity::class.java)
+                    intent.putExtra(ARG_PARAM_UID, item.UID)
+                    intent.putExtra(ARG_PARAM_busDepotUID, item.busDepotUID)
+                    startActivityForResult(intent, Constants.RequestCodes.REQUEST_ITEM_LEARN)
+                }
 
             }
             RecallItem.ITEM_JOURNEY_STATE_ENUM.JourneyStateTravelling,RecallItem.ITEM_JOURNEY_STATE_ENUM.JourneyStateTravellingOverdue -> {
 
+                if ( Constants.whichApp.isRunning == Constants.whichApp.target.music ) {
+                    val intent = Intent(this@RecallGroupActivity, RecallNowMusicActivity::class.java)
+                    intent.putExtra(ARG_PARAM_UID, item.UID)
+                    intent.putExtra(ARG_PARAM_busDepotUID, item.busDepotUID)
 
+                    startActivityForResult(intent,Constants.RequestCodes.REQUEST_ITEM_RECALL)
+
+
+                }else{
+                    val intent = Intent(this@RecallGroupActivity, RecallNowWordsOnlyActivity::class.java)
+                    intent.putExtra(ARG_PARAM_UID, item.UID)
+                    intent.putExtra(ARG_PARAM_busDepotUID, item.busDepotUID)
+
+                    startActivityForResult(intent,Constants.RequestCodes.REQUEST_ITEM_RECALL)
+                }
 
             }
 

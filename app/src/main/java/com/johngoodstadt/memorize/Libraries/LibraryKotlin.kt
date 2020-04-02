@@ -98,7 +98,7 @@ fun iconAsInitialsIfNecessary(image_uri: Uri?, initials: String?): Uri? {
     if (image_uri == null && initials.isNullOrEmpty() == false) {
 
         //TODO: Freelancer speed test - comment and uncomment this line
-//        return returnValue
+        return returnValue
 
 
         val icon =  MyApplication.getAppContext().writeTextOnDrawable(R.drawable.green_circle, initials)

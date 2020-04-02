@@ -188,7 +188,17 @@ class MainActivity : AppCompatActivity(), RecallGroupsTabFragment.OnListFragment
     override fun onListFragmentInteraction(item: RecallItemRowItem) {
 
 
-
+        if ( Constants.whichApp.isRunning == Constants.whichApp.target.legaldemo ){
+            val intent = Intent(this@MainActivity, RecallNowWordsOnlyActivity::class.java)
+            intent.putExtra(ARG_PARAM_UID, item.UID)
+            intent.putExtra(ARG_PARAM_busDepotUID, item.busDepotUID)
+            startActivityForResult(intent,Constants.RequestCodes.REQUEST_ITEM_RECALL)
+        }else{
+            val intent = Intent(this@MainActivity, RecallNowMusicActivity::class.java)
+            intent.putExtra(ARG_PARAM_UID, item.UID)
+            intent.putExtra(ARG_PARAM_busDepotUID, item.busDepotUID)
+            startActivityForResult(intent,Constants.RequestCodes.REQUEST_ITEM_RECALL)
+        }
 
     }
 
