@@ -400,6 +400,22 @@ class MusicPieceActivity : AppCompatActivity(), PhrasesFragment.OnListFragmentIn
     override fun onListFragmentInteraction (ri: OneLineTableViewCell) {
 
 
+        when (ri.journeyState) {
+            RecallItem.ITEM_JOURNEY_STATE_ENUM.JourneyStateInDepotSetup -> {
+                val intent = Intent(this@MusicPieceActivity, MusicWizardActivity::class.java)
+                intent.putExtra(Constants.ARG_PARAM_UID, ri.UID)
+                intent.putExtra(Constants.ARG_PARAM_busDepotUID, ri.busDepotUID)
+
+                startActivityForResult(intent, Constants.RequestCodes.REQUEST_ITEM_SETUP)
+            }
+            RecallItem.ITEM_JOURNEY_STATE_ENUM.JourneyStateInDepotLearning -> {
+                val intent = Intent(this@MusicPieceActivity, LearnNowActivity::class.java)
+                intent.putExtra(Constants.ARG_PARAM_UID, ri.UID)
+                intent.putExtra(Constants.ARG_PARAM_busDepotUID, ri.busDepotUID)
+
+                startActivityForResult(intent, Constants.RequestCodes.REQUEST_ITEM_LEARN)
+            }
+        }
 
 
     }
@@ -420,7 +436,18 @@ class MusicPieceActivity : AppCompatActivity(), PhrasesFragment.OnListFragmentIn
     }
     override fun onListFragmentInteraction (ri: RecallItemRowItem) {
 
+        when (ri.journeyState) {
 
+            RecallItem.ITEM_JOURNEY_STATE_ENUM.JourneyStateTravelling,RecallItem.ITEM_JOURNEY_STATE_ENUM.JourneyStateTravellingOverdue -> {
+                val intent = Intent(this@MusicPieceActivity, RecallNowMusicActivity::class.java)
+
+                intent.putExtra(Constants.ARG_PARAM_UID, ri.UID)
+                intent.putExtra(Constants.ARG_PARAM_busDepotUID, ri.busDepotUID)
+
+                startActivityForResult(intent, Constants.RequestCodes.REQUEST_ITEM_RECALL)
+            }
+
+        }
 
     }
 
