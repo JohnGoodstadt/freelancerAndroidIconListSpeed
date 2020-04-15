@@ -8,8 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ItemAnimator
-import androidx.recyclerview.widget.SimpleItemAnimator
 import com.johngoodstadt.memorize.R
 import com.johngoodstadt.memorize.adapters.RecallGroupsRecyclerViewAdapter
 import com.johngoodstadt.memorize.models.ReadyForReviewTableViewCell
@@ -27,6 +25,7 @@ class RecallGroupsTabFragment : Fragment() {
 
 
     private var listener: OnListFragmentInteractionListener? = null
+    private var refresh: Int? = 0
     //var adapter: PieceRecyclerViewAdapter? = null
 
     override fun onCreateView(
@@ -36,14 +35,17 @@ class RecallGroupsTabFragment : Fragment() {
         val view = inflater.inflate(R.layout.recall_group_list_fragment, container, false)
 
         if (view is RecyclerView) {
+            var ad = RecallGroupsRecyclerViewAdapter(
+                RecallGroupInSections.ITEMS,
+                listener
+            )
+            ad.setHasStableIds(true)
             with(view) {
 
 
                 layoutManager = LinearLayoutManager(context)
-                adapter = RecallGroupsRecyclerViewAdapter(
-                    RecallGroupInSections.ITEMS,
-                    listener
-                )
+               adapter=ad
+
             }
         }
 
@@ -89,6 +91,9 @@ class RecallGroupsTabFragment : Fragment() {
     fun refreshAdapter() {
 
         if (list != null ) {
+//   if(refresh==RecallGroupInSections.ITEMS.size){
+//       RecallGroupInSections.ITEMS.size
+//   }
             list.adapter?.notifyDataSetChanged()
         }
     }

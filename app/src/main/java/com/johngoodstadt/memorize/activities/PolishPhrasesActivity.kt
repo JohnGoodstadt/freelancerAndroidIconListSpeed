@@ -50,7 +50,7 @@ class PolishPhrasesActivity : AppCompatActivity(), PhrasesFragment.OnListFragmen
     private lateinit var recallGroup:RecallGroup
     private lateinit var recallGroupViewModel: RecallGroupViewModel
     lateinit var activityDataViewModel: PolishingItemListViewModel
-
+    var list:List<Any> = ArrayList()
     var copyOfList = ArrayList<CheckedRecallItems>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -216,12 +216,21 @@ class PolishPhrasesActivity : AppCompatActivity(), PhrasesFragment.OnListFragmen
 
         activityDataViewModel.recallItemList.observe(this, Observer<List<Any>> { allTableviewRows ->
             // Update the UI
+            list=allTableviewRows
             with(detail_list) {
-                layoutManager = LinearLayoutManager(context)
-                adapter = PolishItemsRecyclerViewAdapter(
-                    allTableviewRows,
-                    this@PolishPhrasesActivity
-                )
+                if(adapter==null)
+                {
+
+                    layoutManager = LinearLayoutManager(context)
+                    adapter = PolishItemsRecyclerViewAdapter(
+                        list,
+                        this@PolishPhrasesActivity
+                    )
+                }
+                else
+                {
+                    adapter?.notifyDataSetChanged()
+                }
             }
         })
     }

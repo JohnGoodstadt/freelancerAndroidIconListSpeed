@@ -24,7 +24,6 @@ import com.johngoodstadt.memorize.fragments.PieceActionListDialogFragment.Listen
 import com.johngoodstadt.memorize.fragments.PromptAsImageWizard.PromptAsImageWizardActivity
 import com.johngoodstadt.memorize.fragments.WordsOnlyWizard.WordsOnlyWizardActivity
 import com.johngoodstadt.memorize.models.*
-import com.johngoodstadt.memorize.models.Schemes.DEFAULT_SCHEME_DEBUG
 import com.johngoodstadt.memorize.utils.Constants
 import com.johngoodstadt.memorize.utils.Constants.ARG_PARAM_UID
 import com.johngoodstadt.memorize.utils.Constants.ARG_PARAM_busDepotUID
@@ -40,9 +39,10 @@ class RecallGroupActivity : AppCompatActivity(), PhrasesFragment.OnListFragmentI
     Listener {
 
 
-    private lateinit var recallGroup:RecallGroup
+    private lateinit var recallGroup: RecallGroup
     private lateinit var recallGroupViewModel: RecallGroupViewModel
     lateinit var activityDataViewModel: RecallGroupItemListViewModel
+    var list:List<Any> = ArrayList()
 
 
     private var bottomlist: ArrayList<PieceDetailBottom> = ArrayList()
@@ -55,11 +55,12 @@ class RecallGroupActivity : AppCompatActivity(), PhrasesFragment.OnListFragmentI
         val groupUID = intent.getStringExtra(ARG_PARAM_busDepotUID).guard { return }
 
         val recallGroups = Constants.GlobalVariables.groups.filter { it.UID == groupUID }
-        if (recallGroups.count() > 0 ){
+        if (recallGroups.count() > 0) {
             this.recallGroup = recallGroups.first()
         }
 
-        this.recallGroupViewModel = ViewModelProviders.of(this).get(RecallGroupViewModel::class.java)
+        this.recallGroupViewModel =
+            ViewModelProviders.of(this).get(RecallGroupViewModel::class.java)
 
         setContentView(R.layout.activity_recallgroup_detail)
 //        binding = DataBindingUtil.setContentView(this, R.layout.activity_recallgroup_detail)
@@ -71,7 +72,6 @@ class RecallGroupActivity : AppCompatActivity(), PhrasesFragment.OnListFragmentI
 
         //activityViewModel.getStaticDataforDetail(this.recallGroup.UID)
         activityDataViewModel.getPhraseListforPiece(this.recallGroup)
-
 
 
     }
@@ -106,14 +106,15 @@ class RecallGroupActivity : AppCompatActivity(), PhrasesFragment.OnListFragmentI
             }
             RecallItem.ITEM_JOURNEY_STATE_ENUM.JourneyStateInDepotLearning -> {
 
-                if ( Constants.whichApp.isRunning == Constants.whichApp.target.music ){
+                if (Constants.whichApp.isRunning == Constants.whichApp.target.music) {
                     val intent = Intent(this@RecallGroupActivity, LearnNowActivity::class.java)
                     intent.putExtra(Constants.ARG_PARAM_UID, item.UID)
                     intent.putExtra(Constants.ARG_PARAM_busDepotUID, item.busDepotUID)
 
                     startActivityForResult(intent, Constants.RequestCodes.REQUEST_ITEM_LEARN)
-                }else{
-                    val intent = Intent(this@RecallGroupActivity, LearnNowWordsOnlyActivity::class.java)
+                } else {
+                    val intent =
+                        Intent(this@RecallGroupActivity, LearnNowWordsOnlyActivity::class.java)
                     intent.putExtra(Constants.ARG_PARAM_UID, item.UID)
                     intent.putExtra(Constants.ARG_PARAM_busDepotUID, item.busDepotUID)
 
@@ -121,52 +122,56 @@ class RecallGroupActivity : AppCompatActivity(), PhrasesFragment.OnListFragmentI
                 }
 
 
-
             }
         }
     }
-    override fun onListFragmentInteraction (ri: CheckedTableViewCell) {
+
+    override fun onListFragmentInteraction(ri: CheckedTableViewCell) {
 
         println("onListFragmentInteraction CheckedTableViewCell")
         Toast.makeText(this, ri.title, Toast.LENGTH_SHORT).show()
 
     }
-    override fun onListFragmentInteraction (ri: WaitingForOrhersTableViewCell) {
+
+    override fun onListFragmentInteraction(ri: WaitingForOrhersTableViewCell) {
 
         println("onListFragmentInteraction WaitingForOrhersTableViewCell")
         Toast.makeText(this, ri.title, Toast.LENGTH_SHORT).show()
 
 
     }
+
     override fun onListFragmentInteraction(item: RecallItemRowItem) {
         Toast.makeText(this, item.title, Toast.LENGTH_SHORT).show()
 
         when (item.journeyState) {
             RecallItem.ITEM_JOURNEY_STATE_ENUM.JourneyStateInDepotSetup -> {
 
-                if ( Constants.whichApp.isRunning == Constants.whichApp.target.yoga ){
-                    val intent = Intent(this@RecallGroupActivity, PromptAsImageWizardActivity::class.java)
+                if (Constants.whichApp.isRunning == Constants.whichApp.target.yoga) {
+                    val intent =
+                        Intent(this@RecallGroupActivity, PromptAsImageWizardActivity::class.java)
                     intent.putExtra("UID", item.UID)
                     intent.putExtra(ARG_PARAM_busDepotUID, item.busDepotUID)
                     startActivityForResult(intent, Constants.RequestCodes.REQUEST_ITEM_SETUP)
-                }else{
-                    val intent = Intent(this@RecallGroupActivity, WordsOnlyWizardActivity::class.java)
+                } else {
+                    val intent =
+                        Intent(this@RecallGroupActivity, WordsOnlyWizardActivity::class.java)
                     intent.putExtra("UID", item.UID)
                     intent.putExtra(ARG_PARAM_busDepotUID, item.busDepotUID)
                     startActivityForResult(intent, Constants.RequestCodes.REQUEST_ITEM_SETUP)
                 }
 
 
-
             }
             RecallItem.ITEM_JOURNEY_STATE_ENUM.JourneyStateInDepotLearning -> {
 
-                if ( Constants.whichApp.isRunning == Constants.whichApp.target.legaldemo ){
-                    val intent = Intent(this@RecallGroupActivity, LearnNowWordsOnlyActivity::class.java)
+                if (Constants.whichApp.isRunning == Constants.whichApp.target.legaldemo) {
+                    val intent =
+                        Intent(this@RecallGroupActivity, LearnNowWordsOnlyActivity::class.java)
                     intent.putExtra(ARG_PARAM_UID, item.UID)
                     intent.putExtra(ARG_PARAM_busDepotUID, item.busDepotUID)
                     startActivityForResult(intent, Constants.RequestCodes.REQUEST_ITEM_LEARN)
-                }else{
+                } else {
                     val intent = Intent(this@RecallGroupActivity, LearnNowActivity::class.java)
                     intent.putExtra(ARG_PARAM_UID, item.UID)
                     intent.putExtra(ARG_PARAM_busDepotUID, item.busDepotUID)
@@ -174,22 +179,24 @@ class RecallGroupActivity : AppCompatActivity(), PhrasesFragment.OnListFragmentI
                 }
 
             }
-            RecallItem.ITEM_JOURNEY_STATE_ENUM.JourneyStateTravelling,RecallItem.ITEM_JOURNEY_STATE_ENUM.JourneyStateTravellingOverdue -> {
+            RecallItem.ITEM_JOURNEY_STATE_ENUM.JourneyStateTravelling, RecallItem.ITEM_JOURNEY_STATE_ENUM.JourneyStateTravellingOverdue -> {
 
-                if ( Constants.whichApp.isRunning == Constants.whichApp.target.music ) {
-                    val intent = Intent(this@RecallGroupActivity, RecallNowMusicActivity::class.java)
+                if (Constants.whichApp.isRunning == Constants.whichApp.target.music) {
+                    val intent =
+                        Intent(this@RecallGroupActivity, RecallNowMusicActivity::class.java)
                     intent.putExtra(ARG_PARAM_UID, item.UID)
                     intent.putExtra(ARG_PARAM_busDepotUID, item.busDepotUID)
 
-                    startActivityForResult(intent,Constants.RequestCodes.REQUEST_ITEM_RECALL)
+                    startActivityForResult(intent, Constants.RequestCodes.REQUEST_ITEM_RECALL)
 
 
-                }else{
-                    val intent = Intent(this@RecallGroupActivity, RecallNowWordsOnlyActivity::class.java)
+                } else {
+                    val intent =
+                        Intent(this@RecallGroupActivity, RecallNowWordsOnlyActivity::class.java)
                     intent.putExtra(ARG_PARAM_UID, item.UID)
                     intent.putExtra(ARG_PARAM_busDepotUID, item.busDepotUID)
 
-                    startActivityForResult(intent,Constants.RequestCodes.REQUEST_ITEM_RECALL)
+                    startActivityForResult(intent, Constants.RequestCodes.REQUEST_ITEM_RECALL)
                 }
 
             }
@@ -202,9 +209,13 @@ class RecallGroupActivity : AppCompatActivity(), PhrasesFragment.OnListFragmentI
     private val mMessageReceiver = object : BroadcastReceiver() {
 
         override fun onReceive(context: Context?, intent: Intent?) {
-            val msg= intent?.getStringExtra("message")
+            val msg = intent?.getStringExtra("message")
             //TODO: resets page to top!
-            Toast.makeText(this@RecallGroupActivity,"Refresh on Recall Group Page",Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                this@RecallGroupActivity,
+                "Refresh on Recall Group Page",
+                Toast.LENGTH_SHORT
+            ).show()
 
             Log.d("broadcast", "Recall Group page ${msg}")
             Log.e("broadcast", "RecallGroupActivity.onReceive()()")
@@ -213,7 +224,6 @@ class RecallGroupActivity : AppCompatActivity(), PhrasesFragment.OnListFragmentI
         }
 
     }
-
 
 
     private fun setUpBottomSheet() {
@@ -237,13 +247,12 @@ class RecallGroupActivity : AppCompatActivity(), PhrasesFragment.OnListFragmentI
         }
 
 
-
-
     }
 
     override fun onResume() {
         super.onResume()
-        LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,
+        LocalBroadcastManager.getInstance(this).registerReceiver(
+            mMessageReceiver,
             IntentFilter(Constants.BROADCAST_RECEIVER_INTENT)
         );
     }
@@ -263,7 +272,6 @@ class RecallGroupActivity : AppCompatActivity(), PhrasesFragment.OnListFragmentI
         }
 
 
-
     }
 
     private fun addItem() {
@@ -275,15 +283,16 @@ class RecallGroupActivity : AppCompatActivity(), PhrasesFragment.OnListFragmentI
         if (Constants.whichApp.isRunning == Constants.whichApp.target.yoga) {
             dialog_title = "Add an Asana"   //ready for next target
             message = "Add a name of the pose you want to remember"
-        }else if (Constants.whichApp.isRunning == Constants.whichApp.target.legaldemo) {
+        } else if (Constants.whichApp.isRunning == Constants.whichApp.target.legaldemo) {
             dialog_title = "Add an law case"   //ready for next target
             message = "Add a name of the case you want to remember"
-        }else if (Constants.whichApp.isRunning == Constants.whichApp.target.general) {
+        } else if (Constants.whichApp.isRunning == Constants.whichApp.target.general) {
             dialog_title = "Add a short title"   //ready for next target
             message = "Add the name of something you want to remember"
         }
 
-        val mDialogView = LayoutInflater.from(this).inflate(R.layout.alert_dialog_get_group_name, null)
+        val mDialogView =
+            LayoutInflater.from(this).inflate(R.layout.alert_dialog_get_group_name, null)
 
         val mBuilder = AlertDialog.Builder(this)
             .setView(mDialogView)
@@ -299,7 +308,7 @@ class RecallGroupActivity : AppCompatActivity(), PhrasesFragment.OnListFragmentI
             //get text from EditTexts of custom layout
             val itemName = mDialogView.dialogNameEt.text.toString()//.toUpperCase()
 
-            if (itemName.isEmpty() == false){
+            if (itemName.isEmpty() == false) {
                 val ri = RecallItem(
                     itemName,
                     this.recallGroup.UID
@@ -316,25 +325,36 @@ class RecallGroupActivity : AppCompatActivity(), PhrasesFragment.OnListFragmentI
             }
 
 
-
         }
 
         mDialogView.dialogCancelBtn.setOnClickListener {
             mAlertDialog.dismiss()
         }
     }
+
     private fun setUpViewModel() {
-        activityDataViewModel = ViewModelProviders.of(this)[RecallGroupItemListViewModel::class.java]
+
+        activityDataViewModel =
+            ViewModelProviders.of(this)[RecallGroupItemListViewModel::class.java]
 
 
         activityDataViewModel.recallItemList.observe(this, Observer<List<Any>> { allTableviewRows ->
             // Update the UI
+            list=allTableviewRows;
+
             with(detail_list) {
-                layoutManager = LinearLayoutManager(context)
-                adapter = RecallItemsRecyclerViewAdapter(
-                    allTableviewRows,
-                    this@RecallGroupActivity
-                )
+                if (adapter == null) {
+                    layoutManager = LinearLayoutManager(context)
+
+                    adapter = RecallItemsRecyclerViewAdapter(
+                        list,
+
+                        this@RecallGroupActivity
+                    )
+
+                } else {
+                    (adapter as RecallItemsRecyclerViewAdapter).setData(list)
+                }
             }
         })
     }
@@ -346,15 +366,15 @@ class RecallGroupActivity : AppCompatActivity(), PhrasesFragment.OnListFragmentI
         // don't worry about result code - just refresh page
         //dont worry about any codes - just refresh
 
-        if ( requestCode == Constants.RequestCodes.REQUEST_ITEM_SETUP ){
+        if (requestCode == Constants.RequestCodes.REQUEST_ITEM_SETUP) {
             refreshDataAndView()
-        }else if (resultCode == Activity.RESULT_OK){ //somethings changed so update
+        } else if (resultCode == Activity.RESULT_OK) { //somethings changed so update
             refreshDataAndView()
         }
 
 
-
     }
+
     private fun refreshDataAndView() {
 
         //data

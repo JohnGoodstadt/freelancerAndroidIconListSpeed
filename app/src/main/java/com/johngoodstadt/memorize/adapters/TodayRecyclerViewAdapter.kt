@@ -1,24 +1,27 @@
 package com.johngoodstadt.memorize.adapters
 
-import androidx.recyclerview.widget.RecyclerView
+
+import android.graphics.drawable.BitmapDrawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.RecyclerView
+import com.johngoodstadt.memorize.Libraries.MyApplication
 import com.johngoodstadt.memorize.Libraries.iconAsInitialsIfNecessary
 import com.johngoodstadt.memorize.R
 import com.johngoodstadt.memorize.databinding.FragmentPieceHeaderBinding
 import com.johngoodstadt.memorize.databinding.TodayItemBinding
-import com.johngoodstadt.memorize.models.SectionHeader
-
-
 import com.johngoodstadt.memorize.fragments.RecallGroupsTabFragment.OnListFragmentInteractionListener
 import com.johngoodstadt.memorize.fragments.TodayTabFragment
 import com.johngoodstadt.memorize.models.RecallItem
 import com.johngoodstadt.memorize.models.RecallItem.ITEM_JOURNEY_STATE_ENUM
 import com.johngoodstadt.memorize.models.RecallItemRowItem
+import com.johngoodstadt.memorize.models.SectionHeader
+import com.johngoodstadt.memorize.utils.writeTextOnDrawable
 import kotlinx.android.synthetic.main.today_item.view.*
+
 
 /**
  * [RecyclerView.Adapter] that can display a [DummyItem] and makes a call to the
@@ -63,7 +66,26 @@ class TodayRecyclerViewAdapter(
                 tag = row
                 setOnClickListener(mOnClickListener)
             }
-            row.image_uri = iconAsInitialsIfNecessary(row.image_uri, row.initials)
+
+            if(row.image_uri==null)
+            {
+                var icon: BitmapDrawable? = null;
+                if (row.initials.isNullOrEmpty()) {
+                    icon = MyApplication.getAppContext()
+                        .writeTextOnDrawable(R.drawable.green_circle, "")
+                } else {
+                    icon = MyApplication.getAppContext()
+                        .writeTextOnDrawable(R.drawable.green_circle, row.initials)
+                }
+                holder.binding.imageView3.setImageBitmap(icon.bitmap)
+
+            }
+            else{
+                row.image_uri = iconAsInitialsIfNecessary(row.image_uri, row.initials)
+            }
+
+
+          //  row.image_uri = iconAsInitialsIfNecessary(row.image_uri, row.initials)
             holder.binding.recallItemRowItem = row
 //            if (row.heading == null){
             if (row.journeyState == RecallItem.ITEM_JOURNEY_STATE_ENUM.JourneyStateInDepotSetup || row.journeyState == ITEM_JOURNEY_STATE_ENUM.JourneyStateInDepotLearning){
@@ -99,5 +121,12 @@ class TodayRecyclerViewAdapter(
         val binding:FragmentPieceHeaderBinding) : RecyclerView.ViewHolder(mView)
     {
 
+    }
+
+    override fun getItemId(position: Int): Long {
+      if(mValues.get(position)is RecallItemRowItem)
+        return position.toLong()
+        else
+          return position.toLong()
     }
 }

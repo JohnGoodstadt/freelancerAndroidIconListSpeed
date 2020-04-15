@@ -18,23 +18,18 @@ import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.text.format.DateUtils
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.library.BuildConfig
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentPagerAdapter
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import com.google.firebase.analytics.FirebaseAnalytics
-import com.johngoodstadt.memorize.BuildConfig
-import com.johngoodstadt.memorize.FRED
 import com.johngoodstadt.memorize.Libraries.LibraryFilesystem
 import com.johngoodstadt.memorize.Libraries.LibraryJava
 import com.johngoodstadt.memorize.Libraries.LibraryJava.DatabaseExists
@@ -58,14 +53,11 @@ import com.johngoodstadt.memorize.utils.Constants.MAIN_TAB_TODAY
 import com.johngoodstadt.memorize.utils.Constants.NOTIF_KEY_ID
 import com.johngoodstadt.memorize.utils.RecallGroupInSections
 import com.johngoodstadt.memorize.utils.TodayItemsList
-import com.johngoodstadt.memorize.viewmodels.TodayListViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.alert_dialog_get_group_name.view.*
 import kotlinx.coroutines.*
 import java.util.*
-import java.util.concurrent.TimeUnit
 import kotlin.collections.ArrayList
-import kotlin.math.abs
 
 //import sun.jvm.hotspot.utilities.IntArray
 

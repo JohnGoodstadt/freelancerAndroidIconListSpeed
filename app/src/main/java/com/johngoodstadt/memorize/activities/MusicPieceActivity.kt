@@ -64,7 +64,7 @@ class MusicPieceActivity : AppCompatActivity(), PhrasesFragment.OnListFragmentIn
     private lateinit var recallGroup: RecallGroup
 
     lateinit var activityDataViewModel: RecallGroupItemListViewModel
-
+    var list:List<Any> = ArrayList()
     lateinit var binding: ActivityPiecesDetailBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -99,7 +99,6 @@ class MusicPieceActivity : AppCompatActivity(), PhrasesFragment.OnListFragmentIn
 
         (detail_list.itemAnimator as SimpleItemAnimator).supportsChangeAnimations = false
         detail_list.getItemAnimator()!!.setChangeDuration(0)
-
        // detail_list.setItemAnimator(null)
 
 //        val anim = detail_list.itemAnimator
@@ -107,13 +106,20 @@ class MusicPieceActivity : AppCompatActivity(), PhrasesFragment.OnListFragmentIn
 
         activityDataViewModel.recallItemList.observe(this, Observer<List<Any>> { allTableviewRows ->
             // Update the UI
-
+            list=allTableviewRows;
             with(detail_list) {
-                layoutManager = LinearLayoutManager(context)
-                adapter = RecallItemsRecyclerViewAdapter(
-                    allTableviewRows,
-                    this@MusicPieceActivity
-                )
+                if (adapter == null) {
+                    layoutManager = LinearLayoutManager(context)
+                    adapter = RecallItemsRecyclerViewAdapter(
+                        allTableviewRows,
+                        this@MusicPieceActivity
+                    )
+                }
+                else
+                {
+                    (adapter as RecallItemsRecyclerViewAdapter).setData(list)
+                   // adapter?.notifyDataSetChanged()
+                }
             }
 
         })

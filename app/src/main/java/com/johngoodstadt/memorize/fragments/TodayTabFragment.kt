@@ -7,11 +7,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.SimpleItemAnimator
 
 import com.johngoodstadt.memorize.R
 import com.johngoodstadt.memorize.adapters.TodayRecyclerViewAdapter
@@ -19,7 +17,6 @@ import com.johngoodstadt.memorize.models.RecallItemRowItem
 import com.johngoodstadt.memorize.utils.TodayItemsList
 import com.johngoodstadt.memorize.viewmodels.TodayListViewModel
 import kotlinx.android.synthetic.main.fragment_today.list
-import kotlinx.android.synthetic.main.recall_group_list_fragment.*
 
 /**
  * A simple [Fragment] subclass.
@@ -79,14 +76,18 @@ class TodayTabFragment : Fragment() {
 
 
         if (view is RecyclerView) {
-
+            val ad=TodayRecyclerViewAdapter(
+                TodayItemsList.ITEMS,
+                listener
+            )
+            ad.setHasStableIds(true)
             with(view) {
 
                 layoutManager = LinearLayoutManager(context)
-                adapter = TodayRecyclerViewAdapter(
-                    TodayItemsList.ITEMS,
-                    listener
-                )
+
+                adapter =ad
+
+
             }
         }
 
@@ -113,6 +114,7 @@ class TodayTabFragment : Fragment() {
 
         if (::todayListVM.isInitialized) {
             //todayListVM.getStaticDataForMain()
+//list.adapter?.setHasStableIds(true)
             list.adapter?.notifyDataSetChanged()
         }
 

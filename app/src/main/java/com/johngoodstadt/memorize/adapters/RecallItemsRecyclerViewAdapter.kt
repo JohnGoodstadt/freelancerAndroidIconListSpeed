@@ -1,11 +1,13 @@
 package com.johngoodstadt.memorize.adapters
 
+import android.graphics.drawable.BitmapDrawable
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.DataBindingUtil
+import com.johngoodstadt.memorize.Libraries.MyApplication
 import com.johngoodstadt.memorize.Libraries.iconAsInitialsIfNecessary
 import com.johngoodstadt.memorize.R
 import com.johngoodstadt.memorize.databinding.FragmentPieceHeaderBinding
@@ -20,6 +22,7 @@ import com.johngoodstadt.memorize.fragments.RecallGroupsTabFragment.OnListFragme
 import com.johngoodstadt.memorize.models.*
 import com.johngoodstadt.memorize.utils.Constants
 import com.johngoodstadt.memorize.utils.ItemsInGroupList
+import com.johngoodstadt.memorize.utils.writeTextOnDrawable
 //import kotlinx.android.synthetic.main.today_item.view.*
 import kotlinx.android.synthetic.main.phrases_item.view.*
 
@@ -37,6 +40,7 @@ class RecallItemsRecyclerViewAdapter(
     private val mOnClickListener: View.OnClickListener
 
     init {
+        setHasStableIds(true)
         mOnClickListener = View.OnClickListener { v ->
 
 
@@ -102,8 +106,24 @@ class RecallItemsRecyclerViewAdapter(
                 tag = row
                 setOnClickListener(mOnClickListener)
             }
+            if(row.image_uri==null)
+            {
+                var icon: BitmapDrawable? = null;
+                if (row.initials.isNullOrEmpty()) {
+                    icon = MyApplication.getAppContext()
+                        .writeTextOnDrawable(R.drawable.green_circle, "")
+                } else {
+                    icon = MyApplication.getAppContext()
+                        .writeTextOnDrawable(R.drawable.green_circle, row.initials)
+                }
+                holder.binding.imageView3.setImageBitmap(icon.bitmap)
 
-            row.image_uri = iconAsInitialsIfNecessary(row.image_uri, row.initials)
+            }
+            else{
+                row.image_uri = iconAsInitialsIfNecessary(row.image_uri, row.initials)
+            }
+
+            //row.image_uri = iconAsInitialsIfNecessary(row.image_uri, row.initials)
             holder.binding.recallItemRowItemViewModel = row
             val titleViewLayoutParams = holder.titletextview.layoutParams as ConstraintLayout.LayoutParams
 
@@ -113,7 +133,23 @@ class RecallItemsRecyclerViewAdapter(
                 tag = row
                 setOnClickListener(mOnClickListener)
             }
-            row.image_uri = iconAsInitialsIfNecessary(row.image_uri, row.initials)
+            if(row.image_uri==null)
+            {
+                var icon: BitmapDrawable? = null;
+                if (row.initials.isNullOrEmpty()) {
+                    icon = MyApplication.getAppContext()
+                        .writeTextOnDrawable(R.drawable.green_circle, "")
+                } else {
+                    icon = MyApplication.getAppContext()
+                        .writeTextOnDrawable(R.drawable.green_circle, row.initials)
+                }
+                holder.binding.imageView3.setImageBitmap(icon.bitmap)
+
+            }
+            else{
+                row.image_uri = iconAsInitialsIfNecessary(row.image_uri, row.initials)
+            }
+
             holder.binding.vm = row
         }
         else if (holder is ViewHolderWaiting && row is WaitingForOrhersTableViewCell){
@@ -121,7 +157,24 @@ class RecallItemsRecyclerViewAdapter(
                 tag = row
                 setOnClickListener(mOnClickListener)
             }
-            row.image_uri = iconAsInitialsIfNecessary(row.image_uri, row.initials)
+
+            if(row.image_uri==null)
+            {
+                var icon: BitmapDrawable? = null;
+                if (row.initials.isNullOrEmpty()) {
+                    icon = MyApplication.getAppContext()
+                        .writeTextOnDrawable(R.drawable.green_circle, "")
+                } else {
+                    icon = MyApplication.getAppContext()
+                        .writeTextOnDrawable(R.drawable.green_circle, row.initials)
+                }
+                holder.binding.imageView3.setImageBitmap(icon.bitmap)
+
+            }
+            else{
+                row.image_uri = iconAsInitialsIfNecessary(row.image_uri, row.initials)
+            }
+            //row.image_uri = iconAsInitialsIfNecessary(row.image_uri, row.initials)
 
 
             holder.binding.vm = row
@@ -197,4 +250,21 @@ class RecallItemsRecyclerViewAdapter(
         notifyDataSetChanged()
     }
 
+    override fun getItemId(position: Int): Long {
+        var row=mValues.get(position)
+        if(row is RecallItemRowItem)
+           return position.toLong()
+        else if(row is OneLineTableViewCell)
+            return position.toLong()
+        else if(row is WaitingForOrhersTableViewCell)
+            return position.toLong()
+        else
+            return position.toLong()
+
+    }
+
+    fun setData(list: List<Any>) {
+        mValues=list
+        notifyDataSetChanged()
+    }
 }
